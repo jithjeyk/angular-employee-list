@@ -1,0 +1,56 @@
+<div class="w-full h-screen flex items-center justify-center">
+    <div class="w-full max-h-[511px] px-4 flex flex-col md:flex-row md:justify-center md:space-x-4">
+        <div class="md:w-[300px]">
+            <div class="relative flex items-center p-2 border-2 border-gray-300 rounded-lg bg-white">
+                <label class="flex items-center cursor-pointer">
+                    <span class="px-4 py-2 text-white bg-blue-600 rounded-lg">Choose File</span>
+                    <input type="file" id="file-input" class="absolute inset-0 opacity-0 cursor-pointer"
+                        (change)="selectFile($event)">
+                </label>
+                <span id="file-name" class="ml-3 text-gray-500">{{fileName}}</span>
+            </div>
+            <div
+                class="text-center mt-2 py-2 rounded-lg border-dashed border-2 border-{{!currentFile ? 'grey' : 'sky'}}-500">
+                <button mat-flat-button color="primary" [disabled]="!currentFile" (click)="upload()">
+                    Upload
+                </button>
+            </div>
+        </div>
+        <div class="h-[464px]">
+            <mat-tab-group>
+                <mat-tab label="All Employees">
+                    <table mat-table [dataSource]="employeesList" class="mat-elevation-z8">
+                        <ng-container matColumnDef="id">
+                            <th mat-header-cell *matHeaderCellDef> Id. </th>
+                            <td mat-cell *matCellDef="let employee"> {{employee.id}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="name">
+                            <th mat-header-cell *matHeaderCellDef> Name </th>
+                            <td mat-cell *matCellDef="let employee"> {{employee.name}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="designation">
+                            <th mat-header-cell *matHeaderCellDef> Designation </th>
+                            <td mat-cell *matCellDef="let employee"> {{employee.designation}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="location">
+                            <th mat-header-cell *matHeaderCellDef> Location </th>
+                            <td mat-cell *matCellDef="let employee"> {{employee.location}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="status">
+                            <th mat-header-cell *matHeaderCellDef> Status </th>
+                            <td mat-cell *matCellDef="let employee"> {{employee.status}} </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                </mat-tab>
+                <mat-tab label="Active Employess"> Content 2 </mat-tab>
+                <mat-tab label="Inactive Employees"> Content 3 </mat-tab>
+                <mat-tab label="Temporarily Suspended Employees"> Content 2 </mat-tab>
+                <mat-tab label="Terminated Employees"> Content 3 </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+
+</div>
