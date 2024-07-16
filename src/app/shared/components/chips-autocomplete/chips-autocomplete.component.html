@@ -1,0 +1,25 @@
+<form>
+    <mat-form-field class="chip-list">
+      <mat-label>{{filterOption.label}}</mat-label>
+      <mat-chip-grid #chipGrid aria-label="fruit">
+        @for (option of selectedFilterOptions; track option) {
+          <mat-chip-row (removed)="removeFilter(option, filterOption.field)">
+            {{option}}
+            <button matChipRemove [attr.aria-label]="'remove ' + option">
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip-row>
+        }
+      </mat-chip-grid>
+      <input placeholder="New Filter..." #employeeFilterInput [formControl]="employeeListCtrl"
+        [matChipInputFor]="chipGrid" [matAutocomplete]="auto"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        (matChipInputTokenEnd)="add($event, filterOption.field)" [disabled]="filterOption.disabled"/>
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event, filterOption.field)">
+        @for (list of filteredEmployeeList | async; track list) {
+          <mat-option [value]="list">{{list}}</mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+  

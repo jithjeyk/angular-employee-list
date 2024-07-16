@@ -1,0 +1,13 @@
+<div class="relative flex items-center p-2 border-2 border-gray-300 rounded-lg bg-white">
+    <label class="flex items-center cursor-pointer">
+        <span class="w-[116px] px-4 py-2 text-white bg-blue-600 rounded-lg">Choose File</span>
+        <input type="file" id="file-input" class="absolute inset-0 opacity-0 cursor-pointer"
+            (change)="selectFile($event)">
+    </label>
+    <span id="file-name" class="ml-3 truncate text-gray-500">{{fileName}}</span>
+</div>
+<div class="text-center mt-2 py-2 rounded-lg border-dashed border-2 border-{{!currentFile ? 'grey' : 'sky'}}-500">
+    <button mat-flat-button color="primary" [disabled]="!currentFile" (click)="upload()">
+        Upload
+    </button>
+</div>

@@ -1,0 +1,11 @@
+<div class="w-full py-5 flex items-center justify-center">
+    <div class="w-full max-h-[511px] px-4 flex flex-col md:flex-row md:justify-center md:space-x-4">
+        <div class="md:w-[300px]"><app-file-upload (uploadEventEmitter)="onUploadReceived($event)" /></div>
+        <div class="h-[464px]">
+            <div class="flex flex-col md:flex-row md:space-x-4 pt-2 md:pt-0">
+                <app-chips-autocomplete *ngFor="let option of filterOptions" [filterOption]="option" (filterEventEmitter)="onFilterChange($event)" class="w-full"/>
+            </div>
+            <app-tabs [employeesList]="employeeTableData" />
+        </div>
+    </div>
+</div>

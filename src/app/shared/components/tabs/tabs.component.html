@@ -1,0 +1,6 @@
+<mat-tab-group>
+    <mat-tab *ngFor="let tab of tabDefs; let i = index" [label]="tab.label">
+        <app-table *ngIf="employeesList.length"  [columnDefs]="columnDefs"
+            [employeesList]="getSortedEmployeesList(tab.status)"></app-table>
+    </mat-tab>
+</mat-tab-group>
